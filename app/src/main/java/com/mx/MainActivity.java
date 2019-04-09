@@ -18,13 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mx.dragscrolllayout.R;
+import com.mx.dragscrolllayout.callback.OnInterceptCallBack;
+import com.mx.dragscrolllayout.callback.OnScrollChangeTopListenr;
 import com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout;
 import com.mx.dragscrolllayout.util.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements DragScrollVerticalLayout.OnInterceptCallBack {
+public class MainActivity extends AppCompatActivity implements OnInterceptCallBack {
 
     private static final String TAG = "MainActivity";
 
@@ -176,8 +178,4 @@ public class MainActivity extends AppCompatActivity implements DragScrollVertica
         }
     }
 
-    public interface OnScrollChangeTopListenr {
-
-        void onScrollChange(int x, int y);
-    }
 }
