@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mx.dragscrolllayout.R;
-import com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout;
 import com.mx.dragscrolllayout.util.DisplayUtil;
 
 import java.util.ArrayList;
