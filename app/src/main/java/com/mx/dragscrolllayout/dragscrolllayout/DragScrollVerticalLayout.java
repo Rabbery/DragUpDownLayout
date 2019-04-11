@@ -194,7 +194,7 @@ public class DragScrollVerticalLayout extends LinearLayout implements GestureDet
                 } else {
                     if (diy > 0) {
                         //向下滑
-                        if (Math.abs(disY) > middleHeight * 3 / 4) {
+                        if (Math.abs(disY) > middleHeight * 2 / 3) {
                             animator = ObjectAnimator.ofFloat(DragScrollVerticalLayout.this, ANIMATOR_MODE,
                                     getTranslationY(), getTranslationY() + (0 - getY()));
                         } else {
@@ -223,7 +223,7 @@ public class DragScrollVerticalLayout extends LinearLayout implements GestureDet
                         });
                     } else if (diy < 0) {
                         //向上滑
-                        if (Math.abs(disY) > middleHeight / 4) {
+                        if (Math.abs(disY) > middleHeight / 3) {
                             animator = ObjectAnimator.ofFloat(DragScrollVerticalLayout.this, ANIMATOR_MODE,
                                     getTranslationY(), getTranslationY() + (0 - getY()));
                         } else {
@@ -331,7 +331,7 @@ public class DragScrollVerticalLayout extends LinearLayout implements GestureDet
         } else {
             if (diy > 0) {
                 //向下滑
-                if (Math.abs(disY) > middleHeight * 3 / 4) {
+                if (Math.abs(disY) > middleHeight * 2 / 3) {
                     animator = ObjectAnimator.ofFloat(DragScrollVerticalLayout.this, ANIMATOR_MODE,
                             getTranslationY(), getTranslationY() + (0 - getY()));
                 } else {
@@ -360,7 +360,7 @@ public class DragScrollVerticalLayout extends LinearLayout implements GestureDet
                 });
             } else if (diy < 0) {
                 //向上滑
-                if (Math.abs(disY) > middleHeight / 4) {
+                if (Math.abs(disY) > middleHeight / 3) {
                     animator = ObjectAnimator.ofFloat(DragScrollVerticalLayout.this, ANIMATOR_MODE,
                             getTranslationY(), getTranslationY() + (0 - getY()));
                 } else {

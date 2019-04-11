@@ -86,22 +86,21 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
             }
         });
 
-        mScrollLayout.setOnScrollChangeTopListenr(new OnScrollChangeTopListenr() {
+        mScrollLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
-            public void onScrollChange(int x, int y) {
-                if (y >= mScrollLayout.getMiddleHeight()) {
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (top >= mScrollLayout.getMiddleHeight()) {
                     ll_search_head.setBackgroundColor(Color.argb((int) 255, 81, 83, 92));
-                } else if (y <= 0) {
+                } else if (top <= 0) {
                     ll_search_head.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
                 } else {
-                    float scale = (float) (mScrollLayout.getMiddleHeight() - y + 50) / mScrollLayout.getMiddleHeight();
+                    float scale = (float) (mScrollLayout.getMiddleHeight() - top + 50) / mScrollLayout.getMiddleHeight();
                     if (scale > 1) {
                         scale = 1;
                     }
                     int alpha = (int) (255 * scale);
                     ll_search_head.setBackgroundColor(Color.argb(alpha, 255, 255, 255));
                 }
-
             }
         });
     }
