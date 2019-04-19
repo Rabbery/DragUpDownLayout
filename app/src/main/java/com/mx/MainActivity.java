@@ -1,5 +1,6 @@
 package com.mx;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mx.dragscrolllayout.R;
+import com.mx.dragscrolllayout.SecondActivity;
 import com.mx.dragscrolllayout.callback.OnInterceptCallBack;
 import com.mx.dragscrolllayout.callback.OnScrollChangeTopListenr;
 import com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout;
@@ -103,10 +105,16 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
                 }
             }
         });
+        ll_search_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SecondActivity.class));
+            }
+        });
     }
 
     @Override
-    public boolean checkIfIntercept(MotionEvent ev,boolean downDirect) {
+    public boolean checkIfIntercept(MotionEvent ev, boolean downDirect) {
         View firstChild = mDataRecyclerView.getChildAt(0);
         View firstLeftChild = leftrecyclerview.getChildAt(0);
         boolean shouldIntercept;
@@ -114,16 +122,16 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
         LinearLayoutManager leftManager = (LinearLayoutManager) leftrecyclerview.getLayoutManager();
         int firstVisiblePosition = linearLayoutManager.findFirstVisibleItemPosition();
         int firstLeftVisiblePosition = leftManager.findFirstVisibleItemPosition();
-        if (ev.getX() > mLeftWitdh ) {
-            if(downDirect && firstVisiblePosition == 0 && firstChild.getTop() == 0){
+        if (ev.getX() > mLeftWitdh) {
+            if (downDirect && firstVisiblePosition == 0 && firstChild.getTop() == 0) {
                 shouldIntercept = true;
-            }else{
+            } else {
                 shouldIntercept = false;
             }
         } else {
-            if(downDirect && firstLeftVisiblePosition ==0 && firstLeftChild.getTop() ==0){
+            if (downDirect && firstLeftVisiblePosition == 0 && firstLeftChild.getTop() == 0) {
                 shouldIntercept = true;
-            }else{
+            } else {
                 shouldIntercept = false;
             }
         }
