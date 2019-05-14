@@ -1,74 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#51535c">
-
-    <LinearLayout
-        android:id="@+id/ll_search_head"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#51535c"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:text="I am the head title" />
-    </LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
-        android:id="@+id/rl_data_content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_search_head">
+        android:background="#51535c">
 
-        <Button
-            android:id="@+id/btn_test1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:stateListAnimator="@null"
-            android:text="click me to title layout activity" />
-
-        <TextView
-            android:id="@+id/tv_test1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btn_test1"
-            android:text="i am a map" />
-
-        <com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout
-            android:id="@+id/slide_layout"
+        <LinearLayout
+            android:id="@+id/ll_search_head"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff"
+            android:layout_height="50dp"
+            android:background="#51535c"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/leftrecyclerview"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:background="#F0F0F0" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="I am the head title" />
+        </LinearLayout>
 
-            <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_data_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_search_head">
+
+            <Button
+                android:id="@+id/btn_test1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:stateListAnimator="@null"
+                android:text="i am a button"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:id="@+id/tv_test1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_test1"
+                android:text="i am a text" />
+
+            <com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout
+                android:id="@+id/slide_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="#ffffff"
+                android:orientation="horizontal">
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview_data_list"
+                    android:id="@+id/leftrecyclerview"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:background="#F0F0F0" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerview_data_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-        </com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout>
+                </LinearLayout>
+
+            </com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>

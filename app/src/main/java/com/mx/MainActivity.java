@@ -14,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mx.dragscrolllayout.R;
 import com.mx.dragscrolllayout.SecondActivity;
+import com.mx.dragscrolllayout.base.BaseActivity;
 import com.mx.dragscrolllayout.callback.OnInterceptCallBack;
 import com.mx.dragscrolllayout.callback.OnScrollChangeTopListenr;
 import com.mx.dragscrolllayout.dragscrolllayout.DragScrollVerticalLayout;
@@ -28,7 +30,7 @@ import com.mx.dragscrolllayout.util.DisplayUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnInterceptCallBack {
+public class MainActivity extends BaseActivity implements OnInterceptCallBack {
 
     private static final String TAG = "MainActivity";
 
@@ -46,15 +48,17 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
             mScrollLayout.setMiddleHeight(DisplayUtil.dip2px(getApplicationContext(), 133));
         }
     };
+    private Button btn_test1;
+
+    @Override
+    public int getContentViewId() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        setContentView(R.layout.activity_main);
+
         initData();
         initViews();
     }
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
     private void initViews() {
         mScrollLayout = (DragScrollVerticalLayout) findViewById(R.id.slide_layout);
         ll_search_head = (LinearLayout) findViewById(R.id.ll_search_head);
+        btn_test1 = (Button) findViewById(R.id.btn_test1);
 //        设置事件拦截器
         mScrollLayout.setInterceptCallBack(this);
         mDataRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_data_list);
@@ -92,8 +97,10 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 if (top >= mScrollLayout.getMiddleHeight()) {
+                    setLollipopTitleBarColor(Color.rgb(81, 83, 92));
                     ll_search_head.setBackgroundColor(Color.argb((int) 255, 81, 83, 92));
                 } else if (top <= 0) {
+                    setLollipopTitleBarColor(Color.rgb(255, 255, 255));
                     ll_search_head.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
                 } else {
                     float scale = (float) (mScrollLayout.getMiddleHeight() - top + 50) / mScrollLayout.getMiddleHeight();
@@ -101,11 +108,17 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
                         scale = 1;
                     }
                     int alpha = (int) (255 * scale);
-                    ll_search_head.setBackgroundColor(Color.argb(alpha, 255, 255, 255));
+
+                    if (alpha < 125) {
+                        alpha = 125;
+                    }
+                    int acolor = DisplayUtil.calculateStatusColor(Color.rgb(255, 255, 255), alpha);
+                    setLollipopTitleBarColor(acolor);
+                    ll_search_head.setBackgroundColor(acolor);
                 }
             }
         });
-        ll_search_head.setOnClickListener(new View.OnClickListener() {
+        btn_test1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SecondActivity.class));
@@ -136,6 +149,11 @@ public class MainActivity extends AppCompatActivity implements OnInterceptCallBa
             }
         }
         return shouldIntercept;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.support.annotation.ColorInt;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -163,11 +164,25 @@ public class DisplayUtil {
     /**
      * 测量控件的尺寸
      */
-    private static void calculateViewMeasure(View view) {
+    public static void calculateViewMeasure(View view) {
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
 
         view.measure(w, h);
+    }
+
+    public static int calculateStatusColor(@ColorInt int color, int alpha) {
+        if (alpha == 0) {
+            return color;
+        }
+        float a = alpha / 255f;
+        int red = color >> 16 & 0xff;
+        int green = color >> 8 & 0xff;
+        int blue = color & 0xff;
+        red = (int) (red * a + 0.5);
+        green = (int) (green * a + 0.5);
+        blue = (int) (blue * a + 0.5);
+        return 0xff << 24 | red << 16 | green << 8 | blue;
     }
 
 }
